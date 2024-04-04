@@ -3,7 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 from flask import Flask, request, jsonify, g
 
-from config import UrlService, UrlLogin,UrlLogout,User,Password
+import config as cfg 
+
 
 
 
@@ -11,7 +12,7 @@ from config import UrlService, UrlLogin,UrlLogout,User,Password
 app = Flask(__name__)
 
 def GetPrice(Code,PHPSESSID):
-    url = UrlService+Code
+    url = cfg.UrlService+Code
 
     payload = {}
     headers = {
@@ -35,8 +36,8 @@ def Login():
    
     PHPSESSID = '07fa7b08fb77b7087062a4d396a99269'
     
-    payload = {'user': User,
-    'pass': Password,
+    payload = {'user': cfg.User,
+    'pass': cfg.Password,
     'submit': 'enter'}
     files=[
     ]
@@ -44,7 +45,7 @@ def Login():
         'Cookie': 'PHPSESSID='+ PHPSESSID
     
     }
-    response = requests.request("POST", UrlLogin, headers=headers, data=payload, files=files)
+    response = requests.request("POST", cfg.UrlLogin, headers=headers, data=payload, files=files)
     for cookie in response.cookies:
         if cookie.name == 'PHPSESSID':
             PHPSESSID = cookie.value    
@@ -58,7 +59,7 @@ def Logout(PHPSESSID):
     'Cookie': 'PHPSESSID='+ PHPSESSID
     }
 
-    response = requests.request("GET", UrlLogout, headers=headers, data=payload, files=files)          
+    response = requests.request("GET", cfg.UrlLogout, headers=headers, data=payload, files=files)          
 
 @app.route('/GetPrice/', methods=['POST'])
 def GetPriceWeb():

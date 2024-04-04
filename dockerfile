@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 ENV FLASK_APP app.py
 
 # Run the application
-CMD ["gunicorn", "-c", "gunicorn_config.py", "--bind", "0.0.0.0:5000", "app:app"]  
+CMD ["gunicorn", "-c", "gunicorn_config.py", "--bind", "0.0.0.0:5001", "app:app"]  
