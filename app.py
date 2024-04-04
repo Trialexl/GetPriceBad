@@ -65,8 +65,8 @@ def Logout(PHPSESSID):
 def GetPriceWeb():
     
     data = request.get_json()
-    if 'text' not in data:
-        return jsonify({'code': 'Не был передан необходимый параметр'})
+    if 'Code' not in data:
+        return jsonify({'Code': 'Не был передан необходимый параметр'})
     
     Price = GetPrice(data['Code'], data['PHPSESSID'])
     
