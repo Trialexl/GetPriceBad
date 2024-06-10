@@ -30,6 +30,8 @@ def GetPrice(Code,PHPSESSID):
         for raw_record in raw_records:
             columns = raw_record.find_all("td")
             Price =  columns[1].text.replace('\n','')       
+    if Price  = 0
+        return response.text
     return Price
 
 def Login():
